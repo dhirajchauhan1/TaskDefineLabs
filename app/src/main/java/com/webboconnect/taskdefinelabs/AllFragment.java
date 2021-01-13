@@ -31,6 +31,7 @@ import com.webboconnect.taskdefinelabs.repository.SavedRepository;
 import java.util.ArrayList;
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -98,9 +99,13 @@ public class AllFragment extends Fragment implements OnClickSave {
 
     @Override
     public void onClickSave(Matches matches) {
-        allViewModel.insert(matches);
         if (savedId.contains(matches.getId())){
             repository.delete(matches);
+            Toasty.info(getContext(), "Deleted Successfully").show();
+        }
+        else {
+            allViewModel.insert(matches);
+            Toasty.success(getContext(), "Saved Successfully").show();
         }
        //adapter.notifyDataSetChanged();
 

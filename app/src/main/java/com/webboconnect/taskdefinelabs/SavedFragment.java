@@ -55,14 +55,13 @@ public class SavedFragment extends Fragment implements OnClickDelete {
             }
         });
 
-
         return view;
     }
-
 
 
     @Override
     public void oClickDelete(Matches matches) {
         repository.delete(matches);
+        Toasty.info(getContext(), "Deleted Successfully").show();
     }
 }
