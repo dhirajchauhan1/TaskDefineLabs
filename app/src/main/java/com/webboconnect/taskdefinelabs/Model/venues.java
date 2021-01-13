@@ -7,6 +7,15 @@ public class venues {
     private String name;
     private location location;
     private List<categories> categories;
+    private boolean clicked = false;
+
+    public boolean isClicked() {
+        return clicked;
+    }
+
+    public void setClicked(boolean clicked) {
+        this.clicked = clicked;
+    }
 
     public String getId() {
         return id;

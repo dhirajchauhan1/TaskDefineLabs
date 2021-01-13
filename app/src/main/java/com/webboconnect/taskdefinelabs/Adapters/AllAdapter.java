@@ -62,10 +62,20 @@ public class AllAdapter extends RecyclerView.Adapter<AllAdapter.ViewHolder> {
 
         holder.address.setText("Address: "+loc.getFormattedAddress().toString());
         holder.venue.setText("venue name: "+venues.getName());
-        Log.e("saveId", savedId.toString());
+
+
+        if (!venues.isClicked()){
+            holder._heart.setBackgroundResource(R.drawable.ic_heart_outline_);
+        }
+        else {
+            holder._heart.setBackgroundResource(R.drawable.ic_heart_filled);
+        }
         if (savedId.contains(cat.get(0).getId())){
             Log.e("id", cat.get(0).getId()+"\n");
             holder._heart.setBackgroundResource(R.drawable.ic_heart_filled);
+        }
+        else {
+            holder._heart.setBackgroundResource(R.drawable.ic_heart_outline_);
         }
 
         Matches matches = new Matches(cat.get(0).getId(), cat.get(0).getName(),s,loc.getFormattedAddress().toString(),venues.getName());
@@ -73,11 +83,19 @@ public class AllAdapter extends RecyclerView.Adapter<AllAdapter.ViewHolder> {
         holder._heart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (!venues.isClicked()){
+                    venues.setClicked(true);
+                    holder._heart.setBackgroundResource(R.drawable.ic_heart_filled);
+                }
+                else {
+                    venues.setClicked(false);
+                    holder._heart.setBackgroundResource(R.drawable.ic_heart_outline_);
+                }
                 onClickSave.onClickSave(matches);
                 if (savedId.contains(cat.get(0).getId())){
                     holder._heart.setBackgroundResource(R.drawable.ic_heart_outline_);
                 }
-                else {
+                else if (venues.isClicked()){
                     holder._heart.setBackgroundResource(R.drawable.ic_heart_filled);
                 }
             }

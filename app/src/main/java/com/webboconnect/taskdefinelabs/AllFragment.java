@@ -102,6 +102,7 @@ public class AllFragment extends Fragment implements OnClickSave {
         if (savedId.contains(matches.getId())){
             repository.delete(matches);
         }
+       //adapter.notifyDataSetChanged();
 
     }
 }
